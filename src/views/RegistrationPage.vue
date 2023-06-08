@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>РЕГИСТРАЦИЯ</h1>
-    <VerificationForm v-if="store.showVerifForm" />
+    <VerificationForm :is-signing-in="false" v-if="store.showVerifForm" />
     <RegistrationForm v-else />
   </div>
 </template>

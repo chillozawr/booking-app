@@ -1,10 +1,11 @@
 <template>
   <header class="header">
     <h1>Booking APP</h1>
-    <div class="header__buttons">
+    <div class="header__buttons" v-if="!store.signedIn">
       <MyButton @click="signUp">Регистрация</MyButton>
       <MyButton @click="store.switchModalState">Вход</MyButton>
     </div>
+    <div v-else>your account</div>
     <AuthModal v-if="store.authModal" @close="store.switchModalState" />
   </header>
 </template>

@@ -21,5 +21,18 @@ export const useAuthStore = defineStore('AuthStore', () => {
     userID.value = payload;
   }
 
-  return { authModal, showVerifForm, getUserID, switchModalState, switchVerifFormState, setUserID };
+  function switchSignedInStatus() {
+    signedIn.value = !signedIn.value;
+  }
+
+  return {
+    authModal,
+    showVerifForm,
+    signedIn,
+    getUserID,
+    switchModalState,
+    switchVerifFormState,
+    setUserID,
+    switchSignedInStatus
+  };
 });

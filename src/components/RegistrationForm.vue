@@ -8,14 +8,14 @@
       placeholder="Телефон"
       maxlength="18"
     />
-    <input name="firstName" v-model="firstName" type="text" placeholder="Имя" />
-    <input name="surname" v-model="surname" type="text" placeholder="Фамилия" />
+    <MyTextInput name="firstName" v-model="firstName" type="text" placeholder="Имя" />
+    <MyTextInput name="surname" v-model="surname" type="text" placeholder="Фамилия" />
     <select v-model="sex" name="sex_select">
       <option disabled value="" selected>Выберите пол</option>
       <option value="0">Муж.</option>
       <option value="1">Жен.</option>
     </select>
-    <input name="email" v-model="email" type="email" placeholder="Эл. почта" />
+    <MyTextInput name="email" v-model="email" type="email" placeholder="Эл. почта" />
     <div v-if="errorText">{{ errorText }}</div>
     <MyButton type="submit">Зарегистрироваться</MyButton>
   </form>
@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import MyButton from './UI/MyButton.vue';
+import MyTextInput from './UI/MyTextInput.vue';
 import { ref } from 'vue';
 import { onPhoneInputHandler, phoneFormatting } from '@/utils';
 import { useAuthStore } from '@/stores/authStore';

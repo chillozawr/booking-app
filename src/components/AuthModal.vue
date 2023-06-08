@@ -1,6 +1,6 @@
 <template>
   <MyModal @close="store.switchModalState">
-    <input
+    <MyTextInput
       v-if="!store.showVerifForm"
       name="email"
       v-model="email"
@@ -8,13 +8,14 @@
       placeholder="Эл. почта"
       @keyup.enter="onSubmit"
     />
-    <VerificationForm v-else />
+    <VerificationForm :is-signing-in="true" v-else />
   </MyModal>
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/authStore';
 import MyModal from './UI/MyModal.vue';
+import MyTextInput from './UI/MyTextInput.vue';
 import * as yup from 'yup';
 import { ref } from 'vue';
 import { instance } from '@/API/axiosInstance';
@@ -32,14 +33,14 @@ const onSubmit = async () => {
   try {
     await authSchema.validate({ email: email.value });
     store.switchVerifFormState();
-    // instance
-    //   .post('/auth/', { email: email.value })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    instance
+      .post('/auth/', { email: email.value })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } catch (error) {
     console.log(error);
   }

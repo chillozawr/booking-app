@@ -1,6 +1,6 @@
 <template>
   <form class="verif_form" @submit.prevent="onSubmit">
-    <input
+    <MyTextInput
       name="verifcode"
       v-model="code"
       type="text"
@@ -14,10 +14,17 @@
 <script setup lang="ts">
 import * as yup from 'yup';
 import MyButton from './UI/MyButton.vue';
+import MyTextInput from './UI/MyTextInput.vue';
 import { ref } from 'vue';
 import { instance } from '@/API/axiosInstance';
 import { useAuthStore } from '@/stores/authStore';
 import router from '@/router';
+
+type PropTypes = {
+  isSigningIn: boolean;
+};
+
+const props = defineProps<PropTypes>();
 
 const store = useAuthStore();
 
@@ -44,6 +51,10 @@ const onSubmit = async () => {
         console.log(error);
       });
     router.push('/');
+    if (props.isSigningIn) {
+      store.switchSignedInStatus();
+      store.switchModalState();
+    }
   } catch (error) {
     console.log(error);
   }
