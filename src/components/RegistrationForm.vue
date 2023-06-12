@@ -68,7 +68,6 @@ const onSubmit = async () => {
       });
   } catch (error) {
     errorText.value = error as string;
-    // console.log(error);
   }
 };
 </script>

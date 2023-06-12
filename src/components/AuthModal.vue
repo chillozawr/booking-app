@@ -36,6 +36,8 @@ const onSubmit = async () => {
     instance
       .post('/auth/', { email: email.value })
       .then((response) => {
+        store.setUserID(response.data.data['user id']);
+        
         console.log(response);
       })
       .catch((error) => {

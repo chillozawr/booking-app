@@ -37,3 +37,17 @@ export const phoneFormatting = (phone: string): string => {
   // console.log(phoneFormatted.join(''));
   return phoneFormatted.join('');
 };
+
+export type Place = {
+  accommodation_id: number;
+  address: string;
+  image_preview: string;
+  owner_id: number;
+  owner_name: string;
+  price: number;
+  type: string;
+};
+
+export type getPlacesResponse = {
+  data: Place[];
+};

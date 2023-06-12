@@ -46,6 +46,10 @@ const onSubmit = async () => {
       .post('/check-code/', checkCode)
       .then(function (response) {
         console.log(response);
+        store.setToken(response.data.data.token);
+        if (props.isSigningIn) {
+          localStorage.setItem('token', response.data.data.token);
+        }
       })
       .catch(function (error) {
         console.log(error);
